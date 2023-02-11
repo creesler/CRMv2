@@ -19,7 +19,7 @@ const app = express()
 
 app.use(
     cors({
-        origin: "https://crmv2.netlify.app/",
+        origin: "*",
         methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
         credentials: true
 
