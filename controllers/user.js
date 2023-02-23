@@ -35,6 +35,7 @@ export const register = tryCatch(async (req, res)=>{
             department,
             jobtitle,
             datehired,
+            siteshowcase,
         } = req.body
         if(password.length < 6) return res.status(400).json({success:false, message:'Password must be 6 characters or more'})
         const emailLowerCase = email.toLowerCase()
@@ -69,6 +70,7 @@ export const register = tryCatch(async (req, res)=>{
             department,
             jobtitle,
             datehired,
+            siteshowcase,
         }) 
         const {_id: id, photoURL, role, active } = user
         const token = jwt.sign({id, name, photoURL, role}, process.env.JWT_SECRET, {expiresIn:'1h'})
@@ -106,6 +108,7 @@ export const register = tryCatch(async (req, res)=>{
                 department,
                 jobtitle,
                 datehired,
+                siteshowcase,
             },
         }); 
 });
@@ -150,6 +153,7 @@ export const login = tryCatch(async(req, res)=>{
             department,
             jobtitle,
             datehired,
+            siteshowcase,
         } = existedUser;
         if(!active) return res.status(400).json({success:false, message:'This account has been suspended! Try to contact the Admin'})
         const token = jwt.sign({id, name, photoURL, role}, process.env.JWT_SECRET, {expiresIn:'1h'})
@@ -187,6 +191,7 @@ export const login = tryCatch(async(req, res)=>{
                 department,
                 jobtitle,
                 datehired,
+                siteshowcase,
             },
         }); 
 })
@@ -219,6 +224,7 @@ export const updateProfile = tryCatch(async(req, res)=>{
         department:req.body.department,
         jobtitle:req.body.jobtitle,
         datehired:req.body.datehired,
+        siteshowcase:req.body.siteshowcase,
     } : {name:req.body.name}
     const updatedUser = await User.findByIdAndUpdate(req.user.id, fields, {new:true})
     const {_id:id, name, photoURL, role} = updatedUser
@@ -286,6 +292,7 @@ export const updateStatus =  tryCatch(async(req, res)=>{
         department,
         jobtitle,
         datehired,
+        siteshowcase,
     } = req.body
     await User.findByIdAndUpdate(req.params.userId, {
         role, 
@@ -314,6 +321,7 @@ export const updateStatus =  tryCatch(async(req, res)=>{
         department,
         jobtitle,
         datehired,
+        siteshowcase,
     })
     res.status(200).json({success:true, result:{_id:req.params.userId}})
 })

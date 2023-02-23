@@ -24,6 +24,8 @@ const userSchema = mongoose.Schema({
     department: { type: String, min: 2, max: 50, required: false },
     jobtitle: { type: String, min: 2, max: 50, required: false },
     datehired: { type: String, min: 2, max: 50, required: false },
+    siteshowcase: { type: String, min: 2, max: 50, required: false },
+    
     
     companyname: { type: String, min: 2, max: 50, required: false },
     address: { type: String, min: 2, max: 50, required: false },
